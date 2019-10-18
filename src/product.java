@@ -50,6 +50,33 @@ public class product {
         }
            
        }
+   
+   
+   
+    public void editproduct(int ID,String product,float price){
+       try {
+            Class.forName(forname);
+            Connection con = DriverManager.getConnection(driver,us,ps1);
+            PreparedStatement ps = con.prepareStatement("update product set prod_name = ?, prod_price =? where prod_id = ?");
+            ps.setString(1, product);
+            ps.setFloat(2, price);
+            ps.setInt(3,ID);
+            ps.executeUpdate();
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       
+       
+   }
+   
+   
+   
+   
    }
    
    
