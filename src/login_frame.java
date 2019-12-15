@@ -85,7 +85,7 @@ usern.setText(""); pass1.setText("");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 255, 51));
-        jLabel2.setText("UserName:");
+        jLabel2.setText("Password:");
 
         jButton2.setForeground(new java.awt.Color(204, 0, 0));
         jButton2.setText("LOG IN");

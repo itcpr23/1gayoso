@@ -1,3 +1,13 @@
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +19,11 @@
  * @author Acer
  */
 public class pos extends javax.swing.JFrame {
-
+String forname=  "com.mysql.jdbc.Driver";
+   String driver = "jdbc:mysql://localhost/bsit23";
+   String us = "root";
+   String ps1 ="";
+   String name;
     /**
      * Creates new form pos
      */
@@ -17,6 +31,54 @@ public class pos extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void addPurchase(JTextField textfield) throws ClassNotFoundException, SQLException{
+        int pid = Integer.parseInt(textfield.getText());
+        Class.forName(forname);
+        DefaultTableModel tab = (DefaultTableModel) table.getModel();
+        PreparedStatement ps = DriverManager.getConnection(driver,us,ps1).prepareStatement("Select * from product where prod_id = ?");
+        ps.setInt(1, pid);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+        int barC = Integer.parseInt(rs.getString("prod_id"));
+        String prod = rs.getString("prod_name");
+        int qty = Integer.parseInt(rs.getString("prod_quantity"));
+        float price = Float.parseFloat(rs.getString("prod_price"));
+        
+        int rowC= table.getRowCount();
+        if(rowC==0){
+            tab.addRow(new Object[]{barC,prod,1,price});
+        }
+        else{int stat=0;
+           rowC= table.getRowCount()-1;
+           for(int z =0;z<=rowC;z++){
+               int curid = Integer.parseInt(table.getValueAt(z, 0).toString());
+               if(pid==curid){
+                   int nwqty = Integer.parseInt(table.getValueAt(z, 2).toString()) +1;
+                   table.setValueAt(nwqty, z, 2);
+                   stat =-1;
+               }
+           }
+           if(stat==-1){
+               
+           }
+           else{
+              tab.addRow(new Object[]{barC,prod,1,price}); 
+           }
+           
+        }
+        }
+        int nwrc = table.getRowCount() -1;
+       
+            for(int o =0 ;o<=nwrc;o++){
+                Float quant = Float.parseFloat(table.getValueAt(o, 2).toString());
+                Float pri = Float.parseFloat(table.getValueAt(o, 3).toString());
+                Float sub = quant * pri;
+                table.setValueAt(sub, o, 4);
+            
+        }
+        textfield.setText("");textfield.requestFocus();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +90,8 @@ public class pos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        barfield = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,8 +113,17 @@ public class pos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        barfield.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        barfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        barfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barfieldActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BARCODE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,7 +133,9 @@ public class pos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barfield)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -72,12 +146,24 @@ public class pos extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(barfield, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void barfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barfieldActionPerformed
+    try {
+        this.addPurchase(barfield);        // TODO add your handling code here:
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_barfieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,8 +201,9 @@ public class pos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField barfield;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
