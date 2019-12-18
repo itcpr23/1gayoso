@@ -22,9 +22,9 @@ register_class user = new register_class();
     }
     
     public void clearReg(){
-        firstn1.setText("");
-        lastn1.setText("");
-        usern1.setText("");
+        firstn.setText("");
+        lastn.setText("");
+        usern.setText("");
         pass1.setText("");
         pass2.setText("");
     }
@@ -50,9 +50,9 @@ if(ps1.equals(ps2)){
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        firstn1 = new javax.swing.JTextField();
-        lastn1 = new javax.swing.JTextField();
-        usern1 = new javax.swing.JTextField();
+        firstn = new javax.swing.JTextField();
+        lastn = new javax.swing.JTextField();
+        usern = new javax.swing.JTextField();
         pass1 = new javax.swing.JPasswordField();
         pass2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -63,17 +63,16 @@ if(ps1.equals(ps2)){
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         reglab = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        firstn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        firstn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        lastn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lastn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        usern1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        usern.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         pass1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pass1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -89,7 +88,6 @@ if(ps1.equals(ps2)){
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +110,6 @@ if(ps1.equals(ps2)){
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Confirm-Password:");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,19 +118,6 @@ if(ps1.equals(ps2)){
         });
 
         reglab.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,29 +141,28 @@ if(ps1.equals(ps2)){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(reglab, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                            .addComponent(usern, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                            .addComponent(lastn)
-                            .addComponent(firstn)
-                            .addComponent(pass1)
-                            .addComponent(pass2))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usern, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                                .addComponent(lastn)
+                                .addComponent(firstn)
+                                .addComponent(pass1)
+                                .addComponent(pass2)))
                         .addGap(50, 50, 50))))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstn1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastn1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usern1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usern, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -190,7 +173,7 @@ if(ps1.equals(ps2)){
                     .addComponent(pass2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reglab, javax.swing.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE)
+                .addComponent(reglab, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,9 +196,9 @@ if(ps1.equals(ps2)){
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   String fn = firstn1.getText();
-   String ln = lastn1.getText();
-   String un = usern1.getText();
+   String fn = firstn.getText();
+   String ln = lastn.getText();
+   String un = usern.getText();
    String ps1 = new String (pass1.getPassword());
    String ps2 = new String (pass2.getPassword());
    
@@ -293,7 +276,7 @@ getPass();        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField firstn1;
+    private javax.swing.JTextField firstn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -302,11 +285,10 @@ getPass();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField lastn1;
+    private javax.swing.JTextField lastn;
     private javax.swing.JPasswordField pass1;
     private javax.swing.JPasswordField pass2;
     private javax.swing.JLabel reglab;
-    private javax.swing.JTextField usern1;
+    private javax.swing.JTextField usern;
     // End of variables declaration//GEN-END:variables
 }
